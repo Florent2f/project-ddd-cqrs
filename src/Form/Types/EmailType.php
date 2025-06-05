@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Form\Types;
 
 use App\Entity\ValueObject\Email;
-use App\Entity\ValueObject\Username;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
@@ -25,11 +24,19 @@ final class EmailType extends AbstractType implements DataMapperInterface
         ])->setDataMapper($this);
     }
 
+    /**
+     * @see https://github.com/symfony/symfony/issues/59950
+     */
+    public function getBlockPrefix(): string
+    {
+        return '';
+    }
+
     public function configureOptions(OptionsResolver $resolver): OptionsResolver
     {
         parent::configureOptions($resolver);
         $resolver->setDefaults([
-            'data_class' => Username::class,
+            'data_class' => Email::class,
             'empty_data' => null
         ]);
 

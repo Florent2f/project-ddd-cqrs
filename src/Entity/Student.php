@@ -28,7 +28,6 @@ class Student
     public function __construct()
     {
         $this->address = new Address();
-        $this->email = new Email('flo@test.fr');
     }
 
     public function getId(): ?int
