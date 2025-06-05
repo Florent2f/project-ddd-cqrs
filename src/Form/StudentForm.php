@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Student;
+use App\DTO\StudentModel;
 use App\Form\Types\EmailType;
 use App\Form\Types\AddressType;
 use App\Form\Types\UsernameType;
@@ -24,7 +24,7 @@ class StudentForm extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Student::class,
+            'data_class' => StudentModel::class,
         ]);
     }
 }

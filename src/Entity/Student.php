@@ -16,18 +16,15 @@ class Student
     #[ORM\Column]
     private(set) ?int $id = null;
 
-    #[ORM\Embedded(class: Email::class, columnPrefix: null)]
-    private(set) ?Email $email = null;
-
-    #[ORM\Embedded(class: Username::class, columnPrefix: null)]
-    private(set) ?Username $username = null;
-
-    #[ORM\Embedded(class: Address::class, columnPrefix: false)]
-    private(set) Address $address;
-
-    public function __construct()
-    {
-        $this->address = new Address();
+    public function __construct(
+        #[ORM\Embedded(class: Email::class, columnPrefix: null)]
+        private(set) Email $email,
+        #[ORM\Embedded(class: Username::class, columnPrefix: null)]
+        private(set) Username $username,
+        #[ORM\Embedded(class: Address::class, columnPrefix: false)]
+        private(set) Address $address
+    ) {
+        
     }
 
     public function getId(): ?int
@@ -35,24 +32,10 @@ class Student
         return $this->id;
     }
 
-    public function setEmail(string $email): static
-    {
-        $this->email = new Email($email);
-
-        return $this;
-    }
-
-    public function setUsername(string $username): static
-    {
-        $this->username = new Username($username);
-
-        return $this;
-    }
-
-    public function setAddress(Address $address): static
-    {
+    public function updateProfile(Email $email, Username $username, Address $address): self {
+        $this->email = $email;
+        $this->username = $username;
         $this->address = $address;
-
         return $this;
     }
 }
