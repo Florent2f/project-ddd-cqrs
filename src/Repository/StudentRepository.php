@@ -15,6 +15,12 @@ class StudentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Student::class);
     }
+    
+    public function add(Student $student): void
+    {
+        $this->getEntityManager()->persist($student);
+        $this->getEntityManager()->flush();
+    }
 
     //    /**
     //     * @return Student[] Returns an array of Student objects
