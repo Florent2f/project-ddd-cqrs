@@ -15,39 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/student')]
 final class StudentController extends AbstractController
 {
-    #[Route(name: 'app_student_index', methods: ['GET'])]
-    public function index(StudentRepository $studentRepository): Response
-    {
-        return $this->render('student/index.html.twig', [
-            'students' => $studentRepository->findAll(),
-        ]);
-    }
-
-    // #[Route('/new', name: 'app_student_new', methods: ['GET', 'POST'])]
-    // public function new(Request $request, EntityManagerInterface $entityManager): Response
-    // {
-    //     $model = new StudentModel();
-    //     $form = $this->createForm(StudentForm::class, $model);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $student = new Student(
-    //             $model->email,
-    //             $model->username,
-    //             $model->address
-    //         );
-    //         $entityManager->persist($student);
-    //         $entityManager->flush();
-
-    //         return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
-    //     }
-
-    //     return $this->render('student/new.html.twig', [
-    //         'student' => $model,
-    //         'form' => $form,
-    //     ]);
-    // }
-
+    
     #[Route('/{id}', name: 'app_student_show', methods: ['GET'])]
     public function show(Student $student): Response
     {
