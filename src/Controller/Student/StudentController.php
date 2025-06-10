@@ -5,7 +5,6 @@ namespace App\Controller\Student;
 use App\DTO\StudentModel;
 use App\Entity\Student;
 use App\Form\StudentForm;
-use App\Repository\StudentRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -48,14 +47,4 @@ final class StudentController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_student_delete', methods: ['POST'])]
-    public function delete(Request $request, Student $student, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$student->getId(), $request->getPayload()->getString('_token'))) {
-            $entityManager->remove($student);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
-    }
 }
