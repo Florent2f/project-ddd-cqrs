@@ -28,5 +28,10 @@ final readonly class Email
         return $this->value;
     }
 
+    public function equals(string $newEmail): bool
+    {
+        return $this->value === $newEmail;
+    }
+
 }
 

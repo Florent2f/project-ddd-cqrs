@@ -2,10 +2,11 @@
 
 namespace App\Controller\Student;
 
+use DomainException;
 use App\DTO\StudentModel;
 use App\Form\StudentForm;
-use App\Controller\AbstractController;
 use App\UseCase\Command\AddStudent;
+use App\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -21,11 +22,16 @@ final class AddStudentController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->handleCommand(new AddStudent(
+            try {
+                $this->handleCommand(new AddStudent(
                 $model->email,
                 $model->username,
                 $model->address
             ));
+            } catch (DomainException $e) {
+                $this->addFlash('error', $e->getMessage());
+                return $this->redirectToRoute('app_student_new', [], Response::HTTP_SEE_OTHER);
+            }
 
             return $this->redirectToRoute('app_student_index', [], Response::HTTP_SEE_OTHER);
         }
