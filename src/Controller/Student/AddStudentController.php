@@ -3,8 +3,8 @@
 namespace App\Controller\Student;
 
 use DomainException;
-use App\DTO\StudentModel;
 use App\Form\StudentForm;
+use App\Form\Model\StudentModel;
 use App\UseCase\Command\AddStudent;
 use App\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;

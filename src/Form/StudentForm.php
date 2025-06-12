@@ -2,9 +2,9 @@
 
 namespace App\Form;
 
-use App\DTO\StudentModel;
 use App\Form\Types\EmailType;
 use App\Form\Types\AddressType;
+use App\Form\Model\StudentModel;
 use App\Form\Types\UsernameType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;

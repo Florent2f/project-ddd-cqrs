@@ -4,8 +4,8 @@ namespace App\Controller\Student;
 
 use DomainException;
 use App\Entity\Student;
-use App\DTO\StudentModel;
 use App\Form\StudentForm;
+use App\Form\Model\StudentModel;
 use App\Controller\AbstractController;
 use App\UseCase\Command\UpdateStudent;
 use Symfony\Component\HttpFoundation\Request;

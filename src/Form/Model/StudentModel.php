@@ -2,7 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\DTO;
+namespace App\Form\Model;
+
 
 use App\Entity\Student;
 use App\Entity\ValueObject\Email;
